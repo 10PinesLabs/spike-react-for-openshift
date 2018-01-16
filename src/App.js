@@ -49,7 +49,7 @@ class ShowContent extends Component {
   }
 
   handleClick() {
-    fetch('http://localhost:8085')
+    fetch(process.env.REACT_APP_SERVER_URL)
         .then(
             results => {
               return results.json()
@@ -99,5 +99,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
