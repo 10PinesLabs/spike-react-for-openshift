@@ -30,6 +30,7 @@ class Refresh extends Component{
     return (
         <div className="refresh">
           <a className="refresh-btn" onClick={() => this.props.onClick()}>Refrescar configuracion</a>
+          <p>Actualizamos <span className="title">{this.props.timesRefreshed}</span> veces</p>
         </div>
     );
   }
@@ -39,29 +40,43 @@ class ShowContent extends  Component{
   constructor(props) {
     super(props);
     this.state = { response: {
-      "value1": "Default 1",
-      "value2": "With the React App"
-    }}
+      "value1": "Hardcodeado desde el front",
+      "value2": "Click en refrescar para probar"
+    },
+      timesRefreshed: 0
+    }
+  }
+
+  handleClick(){
+    fetch('http://localhost:8085')
+        .then(
+            results => {
+              return results.json()
+            }
+        ).then(
+        results => {
+          this.setState({response: results, timesRefreshed: this.state.timesRefreshed + 1 });
+          console.log("fetched: ", results)
+        }
+    ).catch((error) => {
+      console.log("Error buscando datos", error);
+      this.setState({response: {
+        "value1": "Fallo miserablemente",
+        "value2": "Detalles en la consola"}});
+
+    });
   }
 
   render() {
     return (
         <div className="center content">
           <Properties value1={this.state.response.value1} value2={this.state.response.value2} />
-          <Refresh onClick={() => this.handleClick()}/>
+          <Refresh onClick={() => this.handleClick()} timesRefreshed={this.state.timesRefreshed} />
         </div>
     );
   }
 
 
-  handleClick(){
-    this.setState({
-      response : {
-        "value1": "Refreshed 1",
-        "value2": "So harcoded"
-      }
-    });
-  }
 }
 
 class App extends Component {

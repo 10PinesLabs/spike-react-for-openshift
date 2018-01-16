@@ -35,7 +35,7 @@
   padding-bottom: 10px;
 }
 
-.property .title{
+.title{
   font-weight: bold;
 }
 
@@ -47,6 +47,10 @@
 
 .refresh{
   padding-bottom: 20px;
+}
+
+.refresh .title{
+  color: red;
 }
 
 .refresh-btn{
