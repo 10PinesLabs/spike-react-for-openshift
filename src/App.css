@@ -75,3 +75,28 @@ a:hover {
   width: 50%;
   padding: 10px;
 }
+
+.update{
+  font-size: 11px;
+}
+
+.update-btn{
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  color: blue;
+  text-decoration: underline;
+}
+
+a.update-btn:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.update .Fail{
+  color: red;
+}
+
+.update .Success{
+  color: green;
+}

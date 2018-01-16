@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './iconoMiClaro.svg';
 import './App.css';
 
-class Properties extends Component{
-  render(){
+class Properties extends Component {
+  render() {
     return (
         <div className="properties">
           <p>Los valores de las configuraciones son:</p>
-          <Property title="Value1" value={this.props.value1} />
-          <Property title="Value2" value={this.props.value2} />
+          <Property title="Value1" value={this.props.value1}/>
+          <Property title="Value2" value={this.props.value2}/>
         </div>
     );
   }
 }
 
-class Property extends Component{
+class Property extends Component {
   render() {
     return (
         <div className="property">
@@ -25,8 +25,8 @@ class Property extends Component{
   }
 }
 
-class Refresh extends Component{
-  render(){
+class Refresh extends Component {
+  render() {
     return (
         <div className="refresh">
           <a className="refresh-btn" onClick={() => this.props.onClick()}>Refrescar configuracion</a>
@@ -34,20 +34,21 @@ class Refresh extends Component{
         </div>
     );
   }
-
 }
-class ShowContent extends  Component{
+
+class ShowContent extends Component {
   constructor(props) {
     super(props);
-    this.state = { response: {
-      "value1": "Hardcodeado desde el front",
-      "value2": "Click en refrescar para probar"
-    },
+    this.state = {
+      response: {
+        "value1": "Hardcodeado desde el front",
+        "value2": "Click en refrescar para probar"
+      },
       timesRefreshed: 0
     }
   }
 
-  handleClick(){
+  handleClick() {
     fetch('http://localhost:8085')
         .then(
             results => {
@@ -55,23 +56,26 @@ class ShowContent extends  Component{
             }
         ).then(
         results => {
-          this.setState({response: results, timesRefreshed: this.state.timesRefreshed + 1 });
+          this.setState({response: results, timesRefreshed: this.state.timesRefreshed + 1});
           console.log("fetched: ", results)
         }
     ).catch((error) => {
       console.log("Error buscando datos", error);
-      this.setState({response: {
-        "value1": "Fallo miserablemente",
-        "value2": "Detalles en la consola"}});
+      this.setState({
+        response: {
+          "value1": "Fallo miserablemente",
+          "value2": "Detalles en la consola"
+        }
+      });
 
     });
   }
 
   render() {
     return (
-        <div className="center content">
-          <Properties value1={this.state.response.value1} value2={this.state.response.value2} />
-          <Refresh onClick={() => this.handleClick()} timesRefreshed={this.state.timesRefreshed} />
+        <div className="content center">
+          <Properties value1={this.state.response.value1} value2={this.state.response.value2}/>
+          <Refresh onClick={() => this.handleClick()} timesRefreshed={this.state.timesRefreshed}/>
         </div>
     );
   }
@@ -82,16 +86,16 @@ class ShowContent extends  Component{
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Prueba de Concepto con React</h1>
-        </header>
-        <p className="App-intro">
-          Esto solamente es una aplicación de ejemplo que funciona en conjunto con las demas apps.
-        </p>
-        <ShowContent />
-      </div>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo"/>
+            <h1 className="App-title">Prueba de Concepto con React</h1>
+          </header>
+          <p className="App-intro">
+            Esto solamente es una aplicación de ejemplo que funciona en conjunto con las demas apps.
+          </p>
+          <ShowContent/>
+        </div>
     );
   }
 }
