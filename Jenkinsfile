@@ -15,10 +15,19 @@ timestamps {
   node {
     try {
       lock(resource: "${projectName}-${env.BRANCH_NAME}-build", inversePrecedence: true) {
+
           stage('Checkout') {
             deleteDir()
             checkout scm
           }
+
+          stage('NodeJS') {
+              def node = tool name: 'node894', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+              env.PATH = "${node}/bin:${env.PATH}"
+
+              sh 'npm config set https-proxy http://localhost:3128'
+          }
+
 
           stage('Build') {
             milestone()
@@ -26,7 +35,6 @@ timestamps {
             def packageVersion = sh 'npm run version --silent'
             currentBuild.displayName = "#${env.BUILD_NUMBER} - ${packageVersion}"
 
-            sh 'npm prune'
             sh 'npm install'
             sh 'npm test'
           }

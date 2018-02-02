@@ -14,5 +14,9 @@
     "eject": "react-scripts eject",
     "version": "echo $npm_package_version",
     "release": "echo release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://tapias.claro.amx:7990/scm/mapp/spike-frontend.git"
   }
 }
