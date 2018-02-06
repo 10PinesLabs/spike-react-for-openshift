@@ -43,7 +43,7 @@ timestamps {
             stage('Artifactory') {
               lock(resource: "${projectName}-artifactory", inversePrecedence: true) {
                 sh 'npm run build'
-                sh 'npm run release'
+                sh 'npm run release-patch'
               }
             }
           }

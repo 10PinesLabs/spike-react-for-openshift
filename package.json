@@ -1,6 +1,6 @@
 {
   "name": "spike-react-for-openshift",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
@@ -13,10 +13,11 @@
     "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "version": "echo $npm_package_version",
-    "release": "echo release"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://tapias.claro.amx:7990/scm/mapp/spike-frontend.git"
+    "name": "echo $npm_package_name",
+    "release-major": "npm version major -m \"Release: %s\" && npm run zip && npm run artifactory",
+    "release-minor": "npm version minor -m \"Release: %s\" && npm run zip && npm run artifactory",
+    "release-patch": "npm version patch -m \"Release: %s\" && npm run zip && npm run artifactory",
+    "zip": "sh scripts/zip.sh",
+    "artifactory": "sh scripts/artifactory.sh"
   }
 }
