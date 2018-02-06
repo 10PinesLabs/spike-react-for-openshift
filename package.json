@@ -20,5 +20,9 @@
     "git-push": "sh scripts/git-push.sh",
     "zip": "sh scripts/zip.sh",
     "artifactory": "sh scripts/artifactory.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://tapias.claro.amx:7990/scm/mapp/spike-frontend.git"
   }
 }
