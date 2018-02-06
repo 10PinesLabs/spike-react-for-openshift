@@ -8,15 +8,22 @@
     "react-scripts": "1.1.0"
   },
   "scripts": {
+    //Scripts que vienen con create react app
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+
+    //Scripts de release
+    "release-major": "npm version major -m \"Release: %s\" && npm run zip && npm run artifactory && npm run post-release",
+    "release-minor": "npm version minor -m \"Release: %s\" && npm run zip && npm run artifactory && npm run post-release",
+    "release-patch": "npm version patch -m \"Release: %s\" && npm run zip && npm run artifactory && npm run post-release",
+    "post-release": "npm install && npm run git-push",
+
+    //Subtareas
     "version": "echo $npm_package_version",
     "name": "echo $npm_package_name",
-    "release-major": "npm version major -m \"Release: %s\" && npm run zip && npm run artifactory",
-    "release-minor": "npm version minor -m \"Release: %s\" && npm run zip && npm run artifactory",
-    "release-patch": "npm version patch -m \"Release: %s\" && npm run zip && npm run artifactory",
+    "git-push": "sh scripts/git-push.sh",
     "zip": "sh scripts/zip.sh",
     "artifactory": "sh scripts/artifactory.sh"
   }
