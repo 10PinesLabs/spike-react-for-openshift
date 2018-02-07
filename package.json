@@ -1,6 +1,6 @@
 {
   "name": "spike-react-for-openshift",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
