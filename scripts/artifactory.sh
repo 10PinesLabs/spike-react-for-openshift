@@ -12,11 +12,11 @@ if [ -f $ZIP ]; then
     CURL_RET=$?
     if [ 0 != $CURL_RET ]; then
         echo ERROR: no se pudo subir el artefacto. Return code $CURL_RET
-        return 1
+        exit 1
     else
         echo artefacto subido
     fi
 else
     echo ERROR: no existe el zip
-    return 1
+    exit 1
 fi

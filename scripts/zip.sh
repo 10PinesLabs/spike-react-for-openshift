@@ -13,6 +13,6 @@ if [ -d "build" ]; then
     echo Zipeado con exito $ZIP
 else
     echo ERROR: no existe directorio build
-    return 1
+    exit 1
 fi
 
