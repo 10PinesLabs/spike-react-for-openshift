@@ -5,7 +5,10 @@ timestamps {
 
   properties([
     parameters([
-      booleanParam(name: 'MAKE_RELEASE', defaultValue: false, description: 'Crear un release y subir a Artifactory')
+      booleanParam(name: 'RELEASE_PATCH', defaultValue: false, description: 'Releasear un patch y subir a Artifactory'),
+      booleanParam(name: 'RELEASE_MINOR', defaultValue: false, description: 'Releasear un minor y subir a Artifactory'),
+      booleanParam(name: 'RELEASE_MAJOR', defaultValue: false, description: 'Releasear un major y subir a Artifactory')
+
     ]),
     pipelineTriggers([
       pollSCM('@daily')
@@ -39,11 +42,27 @@ timestamps {
             sh 'npm test'
           }
 
-          if (params.MAKE_RELEASE) {
+          if (params.RELEASE_PATCH) {
             stage('Artifactory') {
               lock(resource: "${projectName}-artifactory", inversePrecedence: true) {
                 sh 'npm run build'
                 sh 'npm run release-patch'
+              }
+            }
+          }
+          if (params.RELEASE_MINOR) {
+            stage('Artifactory') {
+              lock(resource: "${projectName}-artifactory", inversePrecedence: true) {
+                sh 'npm run build'
+                sh 'npm run release-minor'
+              }
+            }
+          }
+          if (params.RELEASE_MAJOR) {
+            stage('Artifactory') {
+              lock(resource: "${projectName}-artifactory", inversePrecedence: true) {
+                sh 'npm run build'
+                sh 'npm run release-major'
               }
             }
           }
