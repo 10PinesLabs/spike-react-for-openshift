@@ -17,6 +17,7 @@
     "release-patch": "npm version patch -m \"Release: %s\" && npm run zip && npm run artifactory && npm run git-push",
     "version": "echo $npm_package_version",
     "name": "echo $npm_package_name",
+    "git-connection": "echo $npm_package_gitconnection",
     "git-push": "sh scripts/git-push.sh",
     "zip": "sh scripts/zip.sh",
     "artifactory": "sh scripts/artifactory.sh"
@@ -24,5 +25,6 @@
   "repository": {
     "type": "git",
     "url": "http://tapias.claro.amx:7990/scm/mapp/spike-frontend.git"
-  }
+  },
+  "gitconnection": "ssh://git@tapias.claro.amx:7999/mapp/spike-frontend.git"
 }
