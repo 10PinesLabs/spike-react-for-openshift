@@ -2,7 +2,8 @@
 
 echo "Armando el archivo de configuración de ngnix"
 
-echo "server {
+echo "
+server {
 	listen 80; 
 	server_name _; 
 	root /home/gi/dev/git-claro/spike-react-for-openshift/build; 
@@ -21,8 +22,22 @@ echo "server {
 	rewrite ^/back(.*) /$1 break;
         proxy_pass ${URL_BACKEND};
     }
-}" > /etc/nginx/ngnix.conf
-
-cat /etc/nginx/ngnix.conf
+}
+#events {
+#    worker_connections  1024;
+#}
+#http {
+#	server {
+#		listen 80; 
+#		location / {
+#			root /data/www;
+#		}
+#		location /images/ {
+#			root /data;
+#		}
+#	}
+#	include /etc/nginx/conf.d/*.conf;
+#}
+" > /etc/nginx/nginx.conf
 
 echo "CONFIG generada"
