@@ -7,7 +7,7 @@ Podemos configurar que la app se sirva de /front y que vaya a buscar las configu
 
 Dejo archivo de configuracion de ngnix de ejemplo:
 
-
+```
 server {
 	listen 80	default_server;
 	listen [::]:80 default_server;
@@ -33,5 +33,22 @@ server {
 	rewrite ^/back(.*) /$1 break;
         proxy_pass http://127.0.0.1:8080;
     }
+}```
 
-}
+## Buildear la docker image
+
+`docker build . -t nginx-10p`
+
+## Levantar un container de la imagen generada
+
+`docker-compose up`
+
+### ssh en el docker container
+
+ver el nombre que le pone docker compose al container, por ejemplo
+```
+docker-compose up
+Recreating spikereactforopenshift_nginx_1 ... done
+```
+luego, en otra terminal:
+`docker exec -i -t spikereactforopenshift_nginx_1 /bin/bash`
