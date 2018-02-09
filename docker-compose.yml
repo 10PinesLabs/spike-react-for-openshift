@@ -1,0 +1,4 @@
+nginx:
+  image: nginx-10p:latest
+  ports:
+    - "80:80"

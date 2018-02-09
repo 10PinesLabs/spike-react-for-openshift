@@ -1,0 +1,18 @@
+{
+    "name": "spike-react",
+    "profiles": [
+    "development"
+],
+    "label": null,
+    "version": "11b0018ac7b709935c62c9967638acf19414c007",
+    "state": null,
+    "propertySources": [
+    {
+        "name": "https://github.com/10PinesLabs/spike-cloud-config-properties.git/springping.yaml",
+        "source": {
+            "spring.profiles.active": "dev",
+            "server_url": "http://loalhost:8080"
+        }
+    }
+]
+}
