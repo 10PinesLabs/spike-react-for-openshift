@@ -1,6 +1,6 @@
 {
   "name": "spike-react-for-openshift",
-  "version": "0.1.0",
+  "version": "3.0.1",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
@@ -10,7 +10,21 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "test": "CI=true react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "release-major": "npm version major -m \"Release: %s\" && npm run zip && npm run artifactory && npm run git-push",
+    "release-minor": "npm version minor -m \"Release: %s\" && npm run zip && npm run artifactory && npm run git-push",
+    "release-patch": "npm version patch -m \"Release: %s\" && npm run zip && npm run artifactory && npm run git-push",
+    "version": "echo $npm_package_version",
+    "name": "echo $npm_package_name",
+    "git-connection": "echo $npm_package_gitconnection",
+    "git-push": "sh scripts/git-push.sh",
+    "zip": "sh scripts/zip.sh",
+    "artifactory": "sh scripts/artifactory.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://tapias.claro.amx:7990/scm/mapp/spike-frontend.git"
+  },
+  "gitconnection": "ssh://git@tapias.claro.amx:7999/mapp/spike-frontend.git"
 }

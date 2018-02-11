@@ -12,6 +12,12 @@ http {
         location / {
 	    	try_files \$uri /index.html;
         }
+        location ~ \.css {
+           add_header  Content-Type    text/css;
+        }
+        location ~ \.js {
+           add_header  Content-Type    application/x-javascript;
+        }
         location /config {
             proxy_pass ${URL_CONFIGURACION};
             proxy_set_header Host \$host;
